@@ -9,13 +9,13 @@ const dateMinutes = nowTime.getMinutes();
 const dateSeconds = nowTime.getSeconds();
 let secDegs = (dateSeconds * 6)
 let minDegs = (dateMinutes * 6)
-let hourDegs = 0
+let hourDegs = (dateHours * 30)
 
 const hourFunc = () => {
     if (dateHours > 12) {
-        hourDegs = ((dateHours -12) * 30)
+        hourDegs = ((dateHours - 12) * 30)
     } else {
-        hourDegs = dateHours
+        hourDegs = dateHours * 30
     }
 }
 
@@ -52,4 +52,4 @@ setInterval(secTick, 1000)
 minTick()
 hourTick()
 hourFunc()
-console.log(minDegs)
+console.log(dateHours, dateMinutes, dateSeconds)
