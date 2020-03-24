@@ -3,10 +3,21 @@ console.log('loaded!')
 const secHand = document.getElementById('second')
 const minHand = document.getElementById('minute')
 const hourHand = document.getElementById('hour')
-const nowTime = Date.now()
-let secDegs = 0
-let minDegs = 0
+const nowTime = new Date()
+const dateHours= nowTime.getHours();
+const dateMinutes = nowTime.getMinutes();
+const dateSeconds = nowTime.getSeconds();
+let secDegs = (dateSeconds * 6)
+let minDegs = (dateMinutes * 6)
 let hourDegs = 0
+
+const hourFunc = () => {
+    if (dateHours > 12) {
+        hourDegs = ((dateHours -12) * 30)
+    } else {
+        hourDegs = dateHours
+    }
+}
 
 const secTick = () => {
     if (secDegs < 360) {
@@ -33,15 +44,12 @@ const minTick = () => {
 }
 
 const hourTick = () => {
-    if (hourDegs < 360){
-    hourHand.style.transform = "rotate(" + hourDegs + "deg)";
-    hourDegs += 30
-    } else {
-        console.log("?????")
-    }
+    hourFunc()
+        hourHand.style.transform = "rotate(" + hourDegs + "deg)";
 }
 
 setInterval(secTick, 1000)
 minTick()
 hourTick()
-console.log(nowTime)
+hourFunc()
+console.log(minDegs)
